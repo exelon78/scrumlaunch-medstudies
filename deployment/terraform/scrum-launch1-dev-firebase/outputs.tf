@@ -12,6 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+output "project_id" {
+  value = module.project.project_id
+}
 
-folder         = "folders/67907614694"
-auditors_group = "scrum-launch1-dev-auditors@providencemt.com"
+output "project_number" {
+  value = module.project.project_number
+}
