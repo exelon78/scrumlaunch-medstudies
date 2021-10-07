@@ -67,7 +67,7 @@ resource "google_logging_folder_sink" "bigquery_audit_logs_sink" {
   folder           = var.folder
   include_children = true
   filter           = "logName:\"logs/cloudaudit.googleapis.com\" OR logName=\"logs/application-audit-log\""
-  destination      = "bigquery.googleapis.com/projects/${module.project.project_id}/datasets/${module.bigquery_destination.bigquery_dataset.dataset_id}"
+  destination      = "bigquery.googleapis.com/projects/scrumlaunch2-dev-audit/datasets/${module.bigquery_destination.bigquery_dataset.dataset_id}"
 }
 
 module "bigquery_destination" {
