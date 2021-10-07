@@ -19,11 +19,11 @@ set -ex
 MODULES=(
   devops
   audit
-  example-dev-secrets
-  example-dev-networks
-  example-dev-apps
-  example-dev-firebase
-  example-dev-data
+  scrumlaunch2-dev-secrets
+  scrumlaunch2-dev-networks
+  scrumlaunch2-dev-apps
+  scrumlaunch2-dev-firebase
+  scrumlaunch2-dev-data
 )
 
 ACTIONS=()
