@@ -13,9 +13,9 @@
 # limitations under the License.
 
 output "project_id" {
-  value = module.project.project_id
+  value = "scrumlaunch2-dev-audit"
 }
 
 output "project_number" {
-  value = module.project.project_number
+  value = "335015777324"
 }

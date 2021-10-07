@@ -75,7 +75,7 @@ module "bigquery_destination" {
   version = "~> 4.3.0"
 
   dataset_id                  = "scrumlaunch2_dev_1yr_audit_logs"
-  project_id                  = module.project.project_id
+  project_id                  = "scrumlaunch2-dev-audit"
   location                    = "us-east1"
   default_table_expiration_ms = 365 * 8.64 * pow(10, 7) # 365 days
   access = [
@@ -110,7 +110,7 @@ module "storage_destination" {
   version = "~> 1.7.0"
 
   name          = "scrumlaunch2-dev-7yr-audit-logs"
-  project_id    = module.project.project_id
+  project_id    = "scrumlaunch2-dev-audit"
   location      = "us-central1"
   storage_class = "COLDLINE"
 
