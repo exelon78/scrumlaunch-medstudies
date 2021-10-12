@@ -27,22 +27,22 @@ terraform {
 # Create the project and optionally enable APIs, create the deletion lien and add to shared VPC.
 # Deletion lien: https://cloud.google.com/resource-manager/docs/project-liens
 # Shared VPC: https://cloud.google.com/docs/enterprise/best-practices-for-enterprise-organizations#centralize_network_control
-#module "project" {
-#  source  = "terraform-google-modules/project-factory/google"
-#  version = "~> 9.1.0"
+module "project" {
+  source  = "terraform-google-modules/project-factory/google"
+  version = "~> 9.1.0"
 
-#  name                    = "scrumlaunch2-dev-audit"
-#  org_id                  = ""
-#  folder_id               = "891206652602"
-#  billing_account         = "018198-3B9FFC-3090A0"
-#  lien                    = true
-#  default_service_account = "keep"
-#  skip_gcloud_download    = true
-#  activate_apis = [
-#    "bigquery.googleapis.com",
-#    "logging.googleapis.com",
-#  ]
-#}
+  name                    = "scrumlaunch2-dev-audit"
+  org_id                  = ""
+  folder_id               = "891206652602"
+  billing_account         = "018198-3B9FFC-3090A0"
+  lien                    = true
+  default_service_account = "keep"
+  skip_gcloud_download    = true
+  activate_apis = [
+    "bigquery.googleapis.com",
+    "logging.googleapis.com",
+  ]
+}
 
 
 # IAM Audit log configs to enable collection of all possible audit logs.
@@ -67,7 +67,7 @@ resource "google_logging_folder_sink" "bigquery_audit_logs_sink" {
   folder           = var.folder
   include_children = true
   filter           = "logName:\"logs/cloudaudit.googleapis.com\" OR logName=\"logs/application-audit-log\""
-  destination      = "bigquery.googleapis.com/projects/scrumlaunch2-dev-audit/datasets/${module.bigquery_destination.bigquery_dataset.dataset_id}"
+  destination      = "bigquery.googleapis.com/projects/${module.project.project_id}/datasets/${module.bigquery_destination.bigquery_dataset.dataset_id}"
 }
 
 module "bigquery_destination" {
@@ -75,7 +75,7 @@ module "bigquery_destination" {
   version = "~> 4.3.0"
 
   dataset_id                  = "scrumlaunch2_dev_1yr_audit_logs"
-  project_id                  = "scrumlaunch2-dev-audit"
+  project_id                  = module.project.project_id
   location                    = "us-east1"
   default_table_expiration_ms = 365 * 8.64 * pow(10, 7) # 365 days
   access = [
@@ -110,7 +110,7 @@ module "storage_destination" {
   version = "~> 1.7.0"
 
   name          = "scrumlaunch2-dev-7yr-audit-logs"
-  project_id    = "scrumlaunch2-dev-audit"
+  project_id    = module.project.project_id
   location      = "us-central1"
   storage_class = "COLDLINE"
 
