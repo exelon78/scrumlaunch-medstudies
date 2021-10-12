@@ -31,7 +31,7 @@ module "project" {
   source  = "terraform-google-modules/project-factory/google"
   version = "~> 9.1.0"
 
-  name                    = "scrumlaunch2-dev-audit_dup"
+  name                    = "scrumlaunch2-dev-audit-dup"
   org_id                  = ""
   folder_id               = "891206652602"
   billing_account         = "018198-3B9FFC-3090A0"
