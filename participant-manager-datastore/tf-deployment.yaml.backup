@@ -6,61 +6,62 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: auth-server
+  name: participant-manager-datastore
   labels:
-    app: auth-server
+    app: participant-manager-datastore
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: auth-server
+      app: participant-manager-datastore
   template:
     metadata:
       labels:
-        app: auth-server
+        app: participant-manager-datastore
       annotations:
         sidecar.istio.io/inject: "true"
     spec:
       containers:
-        - name: auth-server
-          image: gcr.io/scrumlaunch2-dev-apps/auth-server:latest
+        # application container
+        - name: participant-manager-datastore
+          image: gcr.io/<PREFIX>-<ENV>-apps/participant-manager-datastore:latest
           env:
             # DB ACCESS
+            - name: DB_INSTANCE_URL
+              value: "127.0.0.1" 
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: participant-manager-datastore-credentials
+                  key: dbname
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
-                  name: auth-server-credentials
+                  name: participant-manager-datastore-credentials
                   key: dbusername
             - name: DB_PASS
               valueFrom:
                 secretKeyRef:
-                  name: auth-server-credentials
+                  name: participant-manager-datastore-credentials
                   key: dbpassword
-            - name: DB_NAME
-              valueFrom:
-                secretKeyRef:
-                  name: auth-server-credentials
-                  key: dbname
-            - name: DB_INSTANCE_URL
-              value: "127.0.0.1"      
             # AUTHENTICATION
             - name: CLIENT_ID
               valueFrom:
                 secretKeyRef:
-                  name: client-side-credentials
+                  name: participant-manager-datastore-credentials
                   key: client_id
             - name: SECRET_KEY
               valueFrom:
                 secretKeyRef:
-                  name: client-side-credentials
+                  name: participant-manager-datastore-credentials
                   key: secret_key
             # MAIL SERVER
-            - name: FROM_EMAIL_ADDRESS
+            - name: MAIL_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: email-credentials
                   key: email_address
-            - name: FROM_EMAIL_PASSWORD
+            - name: MAIL_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: email-credentials
@@ -83,15 +84,9 @@ spec:
             # SERVER CALLS
             - name: HYDRA_ADMIN_URL
               value: "http://hydra-admin-np:50000"
-            - name: HYDRA_PUBLIC_URL
-              value: "http://hydra-np:50000"
             - name: SCIM_AUTH_URL
               value: "http://auth-server-np:50000/auth-server"
-            - name: AUTH_SERVER_BASE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: shared-secrets
-                  key: base_url
+            # MISC
             - name: PARTICIPANT_MANAGER_BASE_URL
               valueFrom:
                 secretKeyRef:
@@ -99,67 +94,51 @@ spec:
                   key: base_url
             - name: PARTICIPANT_MANAGER_URL
               value: "$(PARTICIPANT_MANAGER_BASE_URL)/participant-manager"
-            - name: IOS_DEEPLINK_URL
-              valueFrom:
-                secretKeyRef:
-                  name: auth-server-secrets
-                  key: ios_deeplink_url
-            - name: ANDROID_DEEPLINK_URL
-              valueFrom:
-                secretKeyRef:
-                  name: auth-server-secrets
-                  key: android_deeplink_url
-            - name: ENCRYPTOR_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: auth-server-secrets
-                  key: encryptor_password
-            # MISC
-            - name: LOG_PATH
+            - name: GCP_BUCKET_NAME
               valueFrom:
                 secretKeyRef:
                   name: shared-secrets
-                  key: log_path
-            - name: CORS_ALLOWED_ORIGINS
-              value: ""
-            - name: SSL_ENABLED
-              value: "false"
-            - name: SSL_KEY_STORE_PATH
-              value: ""
-            - name: SSL_KEY_STORE_PASSWORD
-              value: ""
-            - name: COOKIE_SECURE
-              value: "true"
-            - name: TEMP_REGID_EXPIRY_MINUTES
-              value: "30"
+                  key: consent_bucket_name
+            - name: STUDY_BUILDER_GCP_BUCKET_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secrets
+                  key: study_resources_bucket_name
             - name: ORG_NAME
               valueFrom:
                 secretKeyRef:
                   name: shared-secrets
                   key: org_name
+            - name: LOG_PATH
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secrets
+                  key: log_path
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: "/secrets/gcloud_key/key.json"
+
           ports:
           - containerPort: 8080
           readinessProbe:
             httpGet:
-              path: /auth-server/healthCheck
+              path: /participant-manager-datastore/healthCheck
               port: 8080
             initialDelaySeconds: 180
             periodSeconds: 20
           resources:
             requests:
-              memory: "500Mi"
+              memory: "400Mi"
               cpu: "50m"
           volumeMounts:
           - name: gcloud-key-volume
             mountPath: /secrets/gcloud_key
             readOnly: true
+        # sidecar container
         - name: cloudsql-proxy
           image: gcr.io/cloudsql-docker/gce-proxy:latest
           command: ["/cloud_sql_proxy",
-                    "-instances=scrumlaunch2-dev-data:us-central1:mystudies=tcp:3306",
-                    "-credential_file=/secrets/gcloud_key/key.json"]
+            "-instances=<PREFIX>-<ENV>-data:<LOCATION>:mystudies=tcp:3306",
+            "-credential_file=/secrets/gcloud_key/key.json"]
           volumeMounts:
           - name: gcloud-key-volume
             mountPath: /secrets/gcloud_key
@@ -167,4 +146,4 @@ spec:
       volumes:
       - name: gcloud-key-volume
         secret:
-          secretName: auth-server-gke-sa-gcloud-key
+          secretName: participant-manager-gke-sa-gcloud-key
