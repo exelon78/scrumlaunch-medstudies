@@ -12,75 +12,86 @@ metadata:
     networking.gke.io/managed-certificates: scrumlaunch2-dev-cert-participants,scrumlaunch2-dev-cert-studies
 spec:
   rules:
-    - host: participants.scrumlaunch2-dev.providencemt.com
+    - host: "participants.scrumlaunch2-dev.providencemt.com"
       http:
         paths:
-          - pathType: ImplementationSpecific
-            path: /auth-server
-            backend:           
+          - pathType: Prefix
+            path: "/auth-server"
+            backend:
+             service:
               name: auth-server-np
               port:
                 number: 50000
-          - pathType: ImplementationSpecific     
-            path: /response-datastore
-            backend:           
+          - pathType: Prefix     
+            path: "/response-datastore"
+            backend:
+             service:
               name: response-datastore-np
               port:
                 number: 50000
-          - pathType: ImplementationSpecific      
-            path: /participant-user-datastore
-            backend:            
+          - pathType: Prefix      
+            path: "/participant-user-datastore"
+            backend:
+             service:
               name: participant-user-datastore-np
               port:
                 number: 50000
-          - pathType: ImplementationSpecific
-            path: /participant-consent-datastore
-            backend:         
+          - pathType: Prefix
+            path: "/participant-consent-datastore"
+            backend:
+             service:
               name: participant-consent-datastore-np
               port:
                 number: 50000
-          - pathType: ImplementationSpecific
-            path: /participant-enroll-datastore
-            backend:           
+          - pathType: Prefix
+            path: "/participant-enroll-datastore"
+            backend:
+             service:
               name: participant-enroll-datastore-np
               port:
                 number: 50000
-          - pathType: ImplementationSpecific      
-            path: /oauth2
-            backend:           
+          - pathType: Prefix      
+            path: "/oauth2"
+            backend:
+             service:
               name: hydra-np
               port:
                 number: 50000
-          - pathType: ImplementationSpecific
-            path: /participant-manager
-            backend:            
+          - pathType: Prefix
+            path: "/participant-manager"
+            backend:
+             service:
               name: participant-manager-np
               port:
                 number: 50000
-          - pathType: ImplementationSpecific       
-            path: /participant-manager-datastore
-            backend:           
+          - pathType: Prefix       
+            path: "/participant-manager-datastore"
+            backend:
+             service:
               name: participant-manager-datastore-np
               port:
                 number: 50000
-    - host: studies.scrumlaunch2-dev.providencemt.com
+    - host: "studies.scrumlaunch2-dev.providencemt.com"
       http:
         paths:
-          - pathType: ImplementationSpecific
-            path: /study-datastore
-            backend:          
+          - pathType: Prefix
+            path: "/study-datastore"
+            backend:
+             service:
               name: study-datastore-np
               port:
                 number: 50000
-          - pathType: ImplementationSpecific
-            path: /studybuilder
-            backend:            
+          - pathType: Prefix
+            path: "/studybuilder"
+            backend:
+             service:
               name: study-builder-np
               port:
                 number: 50000
-          - pathType: ImplementationSpecific
-            path: /study-resources
-            backend:           
+          - pathType: Prefix
+            path: "/study-resources"
+            backend:
+             service:
               name: study-builder-np
               port:
                 number: 50000
