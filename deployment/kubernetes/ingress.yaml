@@ -15,49 +15,49 @@ spec:
     - host: participants.scrumlaunch2-dev.providencemt.com
       http:
         paths:
-          - pathType: Prefix
+          - pathType: ImplementationSpecific
             path: /auth-server
             backend:           
               name: auth-server-np
               port:
                 number: 50000
-          - pathType: Prefix     
+          - pathType: ImplementationSpecific     
             path: /response-datastore
             backend:           
               name: response-datastore-np
               port:
                 number: 50000
-          - pathType: Prefix      
+          - pathType: ImplementationSpecific      
             path: /participant-user-datastore
             backend:            
               name: participant-user-datastore-np
               port:
                 number: 50000
-          - pathType: Prefix
+          - pathType: ImplementationSpecific
             path: /participant-consent-datastore
             backend:         
               name: participant-consent-datastore-np
               port:
                 number: 50000
-          - pathType: Prefix
+          - pathType: ImplementationSpecific
             path: /participant-enroll-datastore
             backend:           
               name: participant-enroll-datastore-np
               port:
                 number: 50000
-          - pathType: Prefix      
+          - pathType: ImplementationSpecific      
             path: /oauth2
             backend:           
               name: hydra-np
               port:
                 number: 50000
-          - pathType: Prefix
+          - pathType: ImplementationSpecific
             path: /participant-manager
             backend:            
               name: participant-manager-np
               port:
                 number: 50000
-          - pathType: Prefix       
+          - pathType: ImplementationSpecific       
             path: /participant-manager-datastore
             backend:           
               name: participant-manager-datastore-np
@@ -66,19 +66,19 @@ spec:
     - host: studies.scrumlaunch2-dev.providencemt.com
       http:
         paths:
-          - pathType: Prefix
+          - pathType: ImplementationSpecific
             path: /study-datastore
             backend:          
               name: study-datastore-np
               port:
                 number: 50000
-          - pathType: Prefix
+          - pathType: ImplementationSpecific
             path: /studybuilder
             backend:            
               name: study-builder-np
               port:
                 number: 50000
-          - pathType: Prefix
+          - pathType: ImplementationSpecific
             path: /study-resources
             backend:           
               name: study-builder-np
