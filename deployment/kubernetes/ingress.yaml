@@ -12,74 +12,74 @@ metadata:
     networking.gke.io/managed-certificates: scrumlaunch2-dev-cert-participants,scrumlaunch2-dev-cert-studies
 spec:
   rules:
-    - host: "participants.scrumlaunch2-dev.providencemt.com"
+    - host: participants.scrumlaunch2-dev.providencemt.com
       http:
         paths:
           - pathType: Prefix
-            path: "/auth-server"
+            path: /auth-server
             backend:           
               name: auth-server-np
               port:
                 number: 50000
           - pathType: Prefix     
-            path: "/response-datastore"
+            path: /response-datastore
             backend:           
               name: response-datastore-np
               port:
                 number: 50000
           - pathType: Prefix      
-            path: "/participant-user-datastore"
+            path: /participant-user-datastore
             backend:            
               name: participant-user-datastore-np
               port:
                 number: 50000
           - pathType: Prefix
-            path: "/participant-consent-datastore"
+            path: /participant-consent-datastore
             backend:         
               name: participant-consent-datastore-np
               port:
                 number: 50000
           - pathType: Prefix
-            path: "/participant-enroll-datastore"
+            path: /participant-enroll-datastore
             backend:           
               name: participant-enroll-datastore-np
               port:
                 number: 50000
           - pathType: Prefix      
-            path: "/oauth2"
+            path: /oauth2
             backend:           
               name: hydra-np
               port:
                 number: 50000
           - pathType: Prefix
-            path: "/participant-manager"
+            path: /participant-manager
             backend:            
               name: participant-manager-np
               port:
                 number: 50000
           - pathType: Prefix       
-            path: "/participant-manager-datastore"
+            path: /participant-manager-datastore
             backend:           
               name: participant-manager-datastore-np
               port:
                 number: 50000
-    - host: "studies.scrumlaunch2-dev.providencemt.com"
+    - host: studies.scrumlaunch2-dev.providencemt.com
       http:
         paths:
           - pathType: Prefix
-            path: "/study-datastore"
+            path: /study-datastore
             backend:          
               name: study-datastore-np
               port:
                 number: 50000
           - pathType: Prefix
-            path: "/studybuilder"
+            path: /studybuilder
             backend:            
               name: study-builder-np
               port:
                 number: 50000
           - pathType: Prefix
-            path: "/study-resources"
+            path: /study-resources
             backend:           
               name: study-builder-np
               port:
