@@ -17,57 +17,49 @@ spec:
         paths:
           - pathType: Prefix
             path: "/auth-server"
-            backend:
-            service:
+            backend:           
               name: auth-server-np
               port:
                 number: 50000
           - pathType: Prefix     
             path: "/response-datastore"
-            backend:
-            service:
+            backend:           
               name: response-datastore-np
               port:
                 number: 50000
           - pathType: Prefix      
             path: "/participant-user-datastore"
-            backend:
-            service:
+            backend:            
               name: participant-user-datastore-np
               port:
                 number: 50000
           - pathType: Prefix
             path: "/participant-consent-datastore"
-            backend:
-            service:
+            backend:         
               name: participant-consent-datastore-np
               port:
                 number: 50000
           - pathType: Prefix
             path: "/participant-enroll-datastore"
-            backend:
-            service:
+            backend:           
               name: participant-enroll-datastore-np
               port:
                 number: 50000
           - pathType: Prefix      
             path: "/oauth2"
-            backend:
-            service:
+            backend:           
               name: hydra-np
               port:
                 number: 50000
           - pathType: Prefix
             path: "/participant-manager"
-            backend:
-            service:
+            backend:            
               name: participant-manager-np
               port:
                 number: 50000
           - pathType: Prefix       
             path: "/participant-manager-datastore"
-            backend:
-            service:
+            backend:           
               name: participant-manager-datastore-np
               port:
                 number: 50000
@@ -76,22 +68,19 @@ spec:
         paths:
           - pathType: Prefix
             path: "/study-datastore"
-            backend:
-            service:
+            backend:          
               name: study-datastore-np
               port:
                 number: 50000
           - pathType: Prefix
             path: "/studybuilder"
-            backend:
-            service:
+            backend:            
               name: study-builder-np
               port:
                 number: 50000
           - pathType: Prefix
             path: "/study-resources"
-            backend:
-            service:
+            backend:           
               name: study-builder-np
               port:
                 number: 50000
