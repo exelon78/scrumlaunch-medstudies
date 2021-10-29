@@ -12,7 +12,7 @@ metadata:
     networking.gke.io/managed-certificates: scrumlaunch2-dev-cert-participants,scrumlaunch2-dev-cert-studies
 spec:
   rules:
-    - host: "participants.scrumlaunch2-dev.providencemt.com/*"
+    - host: "participants.scrumlaunch2-dev.providencemt.com"
       http:
         paths:
           - pathType: ImplementationSpecific
