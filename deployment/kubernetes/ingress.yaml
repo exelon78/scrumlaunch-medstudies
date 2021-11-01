@@ -15,83 +15,50 @@ spec:
     - host: participants.scrumlaunch2-dev.providencemt.com
       http:
         paths:
-          - pathType: ImplementationSpecific
-            path: /auth-server/*
+          - path: /auth-server/*
             backend:
-              service:
-                name: auth-server-np
-                port:
-                  number: 50000
-          - pathType: ImplementationSpecific     
-            path: /response-datastore/*
+              serviceName: auth-server-np
+              servicePort: 50000
+          - path: /response-datastore/*
             backend:
-              service:
-                name: response-datastore-np
-                port:
-                  number: 50000
-          - pathType: ImplementationSpecific      
-            path: /participant-user-datastore/*
+              serviceName: response-datastore-np
+              servicePort: 50000
+          - path: /participant-user-datastore/*
             backend:
-              service:
-                name: participant-user-datastore-np
-                port:
-                  number: 50000
-          - pathType: ImplementationSpecific
-            path: /participant-consent-datastore/*
+              serviceName: participant-user-datastore-np
+              servicePort: 50000
+          - path: /participant-consent-datastore/*
             backend:
-              service:
-                name: participant-consent-datastore-np
-                port:
-                  number: 50000
-          - pathType: ImplementationSpecific
-            path: /participant-enroll-datastore/*
+              serviceName: participant-consent-datastore-np
+              servicePort: 50000
+          - path: /participant-enroll-datastore/*
             backend:
-              service:
-                name: participant-enroll-datastore-np
-                port:
-                  number: 50000
-          - pathType: ImplementationSpecific      
-            path: /oauth2/*
+              serviceName: participant-enroll-datastore-np
+              servicePort: 50000
+          - path: /oauth2/*
             backend:
-              service:
-                name: hydra-np
-                port:
-                  number: 50000
-          - pathType: ImplementationSpecific
-            path: /participant-manager/*
+              serviceName: hydra-np
+              servicePort: 50000
+          - path: /participant-manager/*
             backend:
-              service:
-                name: participant-manager-np
-                port:
-                  number: 50000
-          - pathType: ImplementationSpecific       
-            path: /participant-manager-datastore/*
+              serviceName: participant-manager-np
+              servicePort: 50000
+          - path: /participant-manager-datastore/*
             backend:
-              service:
-                name: participant-manager-datastore-np
-                port:
-                  number: 50000
+              serviceName: participant-manager-datastore-np
+              servicePort: 50000
     - host: studies.scrumlaunch2-dev.providencemt.com
       http:
         paths:
-          - pathType: ImplementationSpecific
-            path: /study-datastore/*
+          - path: /study-datastore/*
             backend:
-              service:
-                name: study-datastore-np
-                port:
-                  number: 50000
-          - pathType: ImplementationSpecific
-            path: /studybuilder/*
+              serviceName: study-datastore-np
+              servicePort: 50000
+          - path: /studybuilder/*
             backend:
-              service:
-                name: study-builder-np
-                port:
-                  number: 50000
-          - pathType: ImplementationSpecific
-            path: /study-resources/*
+              serviceName: study-builder-np
+              servicePort: 50000
+          - path: /study-resources/*
             backend:
-              service:
-                name: study-builder-np
-                port:
-                  number: 50000
+              serviceName: study-builder-np
+              servicePort: 50000
