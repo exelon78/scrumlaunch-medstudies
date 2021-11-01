@@ -95,3 +95,4 @@ spec:
                 name: study-builder-np
                 port:
                   number: 50000
+                  
