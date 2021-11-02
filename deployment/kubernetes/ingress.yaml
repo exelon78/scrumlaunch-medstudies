@@ -12,7 +12,7 @@ metadata:
     networking.gke.io/managed-certificates: scrumlaunch2-dev-cert-participants,scrumlaunch2-dev-cert-studies
 spec:
   rules:
-    - host: participants.scrumlaunch2-dev.providencemt.com
+    - host: "participants.scrumlaunch2-dev.providencemt.com"
       http:
         paths:
           - pathType: ImplementationSpecific
@@ -71,7 +71,7 @@ spec:
                 name: participant-manager-datastore-np
                 port:
                   number: 50000
-    - host: studies.scrumlaunch2-dev.providencemt.com
+    - host: "studies.scrumlaunch2-dev.providencemt.com"
       http:
         paths:
           - pathType: ImplementationSpecific
@@ -95,4 +95,3 @@ spec:
                 name: study-builder-np
                 port:
                   number: 50000
-                  
