@@ -7,7 +7,7 @@ export const environment = {
   hydraLoginUrl: 'https://participants.scrumlaunch2-dev.providencemt.com/oauth2/auth',
   authServerUrl: 'https://participants.scrumlaunch2-dev.providencemt.com/auth-server',
   authServerRedirectUrl: 'https://participants.scrumlaunch2-dev.providencemt.com/auth-server/callback',
-  hydraClientId: 'g7fVCPZ1Bd37suA1',
+  hydraClientId: 'participant-manager/Dockerfile b/participant-manager/Dockerfile',
   appVersion: 'v0.1',
   termsPageTitle: 'Terms title goes here',
   termsPageDescription: 'Terms description goes here',
