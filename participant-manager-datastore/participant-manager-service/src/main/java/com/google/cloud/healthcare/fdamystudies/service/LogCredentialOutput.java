@@ -8,15 +8,11 @@
 
 package com.google.cloud.healthcare.fdamystudies.service;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Component;
 
 
-@Component
-@Setter
-@Getter
+
+
 public class LogCredentialOutput {
 
     @Value("${user.details.link}") private String userDetailsLink;
