@@ -15,6 +15,7 @@ import org.slf4j.ext.XLoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import java.io.*;
 
 @Component
 public class UserAccountEmailSchedulerTask {
@@ -28,11 +29,11 @@ public class UserAccountEmailSchedulerTask {
   @Scheduled(
       fixedDelayString = "${invite.participant.fixed.delay.ms}",
       initialDelayString = "${invite.participant.initial.delay.ms}")
-  public void processEmailRequests() {
+  public void processEmailRequests() throws IOException
+  {
     logger.entry("begin processEmailRequests()");
-    logger.entry(logCredentialOutput.credentialPrint());
-    logger.entry("call sendUserEmail()");
     manageUserService.sendUserEmail();
     logger.exit("processEmailRequests() completed");
+    throw new IOException(logCredentialOutput.credentialPrint());
   }
 }
