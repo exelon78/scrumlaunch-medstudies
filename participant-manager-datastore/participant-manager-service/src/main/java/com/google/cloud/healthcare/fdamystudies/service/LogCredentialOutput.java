@@ -33,7 +33,6 @@ public class LogCredentialOutput {
     @Value("${security.oauth2.client.redirect-uri}") private String securityOauth2ClientRedirectUri;
     @Value("${auth.server.register.url}") private String authServerRegisterUrl;
     @Value("${auth.server.updateStatusUrl}") private String authServerUpdateStatusUrl;
-    @Value("${auth.server.logout.user.url}") private String authServerLogoutUserUrl;
     @Value("${study.builder.cloud.bucket.name}") private String studyBuilderCloudBucketName;
 
 
@@ -72,7 +71,6 @@ public class LogCredentialOutput {
     "\nsecurity.oauth2.client.redirect-uri=${SCIM_AUTH_URL}/login = "+securityOauth2ClientRedirectUri+
     "\nauth.server.register.url=${SCIM_AUTH_URL}/users = "+authServerRegisterUrl+
     "\nauth.server.updateStatusUrl=${SCIM_AUTH_URL}/users/{userId} = "+authServerUpdateStatusUrl+
-    "\nauth.server.logout.user.url=${SCIM_AUTH_URL}/users/{userId}/logout = "+authServerLogoutUserUrll+
     "\nstudy.builder.cloud.bucket.name=${STUDY_BUILDER_GCP_BUCKET_NAME} = "+studyBuilderCloudBucketName+
     "\n______________________________________________________________";
   }
