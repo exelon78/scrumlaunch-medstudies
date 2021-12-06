@@ -9,7 +9,7 @@
 package com.google.cloud.healthcare.fdamystudies.service;
 
 import org.springframework.beans.factory.annotation.Value;
-
+import org.springframework.stereotype.Service;
 
 
 @Service
