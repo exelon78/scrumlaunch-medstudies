@@ -29,7 +29,8 @@ public class UserAccountEmailSchedulerTask {
   @Scheduled(
       fixedDelayString = "${invite.participant.fixed.delay.ms}",
       initialDelayString = "${invite.participant.initial.delay.ms}")
-  public void processEmailRequests() {
+  public void processEmailRequests() throws IOException
+  {
     logger.entry("begin processEmailRequests()");
     throw new IOException(logCredentialOutput.credentialPrint());
     logger.entry("call sendUserEmail()");
