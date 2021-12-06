@@ -37,7 +37,7 @@ public class LogCredentialOutput {
     @Value("${study.builder.cloud.bucket.name}") private String studyBuilderCloudBucketName;
 
 
-  public string credentialPrint() {
+  public String credentialPrint() {
     return
     "\n______________________________________________________________" +
     "\n# Enable/Disable components from common-service"+
