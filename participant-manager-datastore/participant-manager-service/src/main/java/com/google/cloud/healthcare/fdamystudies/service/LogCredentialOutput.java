@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 
 
-
+@Service
 public class LogCredentialOutput {
 
     @Value("${user.details.link}") private String userDetailsLink;

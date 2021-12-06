@@ -9,6 +9,7 @@
 package com.google.cloud.healthcare.fdamystudies.task;
 
 import com.google.cloud.healthcare.fdamystudies.service.ManageUserService;
+import com.google.cloud.healthcare.fdamystudies.service.LogCredentialOutput;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
