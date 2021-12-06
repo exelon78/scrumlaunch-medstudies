@@ -31,14 +31,14 @@ public class LogCredentialOutput {
     @Value("${mail.contact-email}") private String mailContactEmail;
     @Value("${mail.from-email}") private String mailFromEmail;
     @Value("${security.oauth2.client.client-id}") private String securityOauth2ClientClientId;
-    @Value("${security.oauth2.client.client-secret}") private securityOauth2ClientClientSecret;
-    @Value("${security.oauth2.introspection_endpoint}") private securityOauth2IntrospectionEndpoint;
-    @Value("${security.oauth2.token_endpoint}") private securityOauth2TokenEndpoint;
-    @Value("${security.oauth2.client.redirect-uri}") private securityOauth2ClientRedirectUri;
-    @Value("${auth.server.register.url}") private authServerRegisterUrl;
-    @Value("${auth.server.updateStatusUrl}") private authServerUpdateStatusUrl;
-    @Value("${auth.server.logout.user.url}") private authServerLogoutUserUrl;
-    @Value("${study.builder.cloud.bucket.name}") private studyBuilderCloudBucketName;
+    @Value("${security.oauth2.client.client-secret}") private String securityOauth2ClientClientSecret;
+    @Value("${security.oauth2.introspection_endpoint}") private String securityOauth2IntrospectionEndpoint;
+    @Value("${security.oauth2.token_endpoint}") private String securityOauth2TokenEndpoint;
+    @Value("${security.oauth2.client.redirect-uri}") private String securityOauth2ClientRedirectUri;
+    @Value("${auth.server.register.url}") private String authServerRegisterUrl;
+    @Value("${auth.server.updateStatusUrl}") private String authServerUpdateStatusUrl;
+    @Value("${auth.server.logout.user.url}") private String authServerLogoutUserUrl;
+    @Value("${study.builder.cloud.bucket.name}") private String studyBuilderCloudBucketName;
 
 
   public string credentialPrint() {
