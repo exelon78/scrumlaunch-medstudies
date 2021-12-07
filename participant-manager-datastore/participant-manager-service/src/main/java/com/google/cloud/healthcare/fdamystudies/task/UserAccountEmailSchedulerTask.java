@@ -32,8 +32,8 @@ public class UserAccountEmailSchedulerTask {
   public void processEmailRequests() throws IOException
   {
     logger.entry("begin processEmailRequests()");
-    manageUserService.sendUserEmail();
+//    manageUserService.sendUserEmail();
+    //throw new IOException(logCredentialOutput.credentialPrint());
     logger.exit("processEmailRequests() completed");
-    throw new IOException(logCredentialOutput.credentialPrint());
   }
 }
