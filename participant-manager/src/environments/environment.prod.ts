@@ -2,12 +2,12 @@
 export const environment = {
   production: true,
   // remove http/https to appear relative. xsrf-token skips absolute paths.
-  participantManagerDatastoreUrl: '//<BASE_URL>/participant-manager-datastore',
+  participantManagerDatastoreUrl: '//participants.scrumlaunch2-dev.providencemt.com/participant-manager-datastore',
   baseHref: '/participant-manager/',
-  hydraLoginUrl: 'https://<BASE_URL>/oauth2/auth',
-  authServerUrl: 'https://<BASE_URL>/auth-server',
-  authServerRedirectUrl: 'https://<BASE_URL>/auth-server/callback',
-  hydraClientId: '<AUTH_SERVER_CLIENT_ID>',
+  hydraLoginUrl: 'https://participants.scrumlaunch2-dev.providencemt.com/oauth2/auth',
+  authServerUrl: 'https://participants.scrumlaunch2-dev.providencemt.com/auth-server',
+  authServerRedirectUrl: 'https://participants.scrumlaunch2-dev.providencemt.com/auth-server/callback',
+  hydraClientId: 'g7fVCPZ1Bd37suA1',
   appVersion: 'v0.1',
   termsPageTitle: 'Terms title goes here',
   termsPageDescription: 'Terms description goes here',

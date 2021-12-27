@@ -6,15 +6,15 @@
 apiVersion: networking.gke.io/v1beta1
 kind: ManagedCertificate
 metadata:
-  name: <PREFIX>-<ENV>-cert-participants
+  name: scrumlaunch2-dev-cert-participants
 spec:
   domains:
-    - participants.<PREFIX>-<ENV>.<DOMAIN>
+    - participants.scrumlaunch2-dev.providencemt.com
 ---
 apiVersion: networking.gke.io/v1beta1
 kind: ManagedCertificate
 metadata:
-  name: <PREFIX>-<ENV>-cert-studies
+  name: scrumlaunch2-dev-cert-studies
 spec:
   domains:
-    - studies.<PREFIX>-<ENV>.<DOMAIN>
+    - studies.scrumlaunch2-dev.providencemt.com

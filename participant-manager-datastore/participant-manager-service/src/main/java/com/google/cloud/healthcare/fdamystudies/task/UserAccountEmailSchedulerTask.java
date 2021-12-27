@@ -14,6 +14,7 @@ import org.slf4j.ext.XLoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import java.io.*;
 
 @Component
 public class UserAccountEmailSchedulerTask {
@@ -26,7 +27,8 @@ public class UserAccountEmailSchedulerTask {
   @Scheduled(
       fixedDelayString = "${invite.participant.fixed.delay.ms}",
       initialDelayString = "${invite.participant.initial.delay.ms}")
-  public void processEmailRequests() {
+  public void processEmailRequests() 
+  {
     logger.entry("begin processEmailRequests()");
     manageUserService.sendUserEmail();
     logger.exit("processEmailRequests() completed");
