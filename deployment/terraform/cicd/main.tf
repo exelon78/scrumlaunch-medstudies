@@ -172,7 +172,7 @@ resource "google_cloudbuild_trigger" "validate" {
     owner = "exelon78"
     name  = "scrumlaunch-medstudies"
     pull_request {
-      branch = "^fdaTo2.0.8$"
+      branch = "^master$"
     }
   }
 
@@ -201,7 +201,7 @@ resource "google_cloudbuild_trigger" "plan" {
     owner = "exelon78"
     name  = "scrumlaunch-medstudies"
     pull_request {
-      branch = "^fdaTo2.0.8$"
+      branch = "^master$"
     }
   }
 
@@ -230,7 +230,7 @@ resource "google_cloudbuild_trigger" "apply" {
     owner = "exelon78"
     name  = "scrumlaunch-medstudies"
     push {
-      branch = "^fdaTo2.0.8$"
+      branch = "^master$"
     }
   }
 

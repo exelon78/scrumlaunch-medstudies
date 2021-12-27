@@ -65,7 +65,7 @@ resource "google_cloudbuild_trigger" "server_build_triggers" {
   github {
     owner = "exelon78"
     name  = "scrumlaunch-medstudies"
-    push { branch = "^fdaTo2.0.8$" }
+    push { branch = "^master$" }
   }
 
   filename = "${each.key}/cloudbuild.yaml"
