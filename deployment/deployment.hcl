@@ -41,7 +41,7 @@ template "mystudies" {
     github_repo      = "scrumlaunch-medstudies"
     # The branch of your cloned repo that your CICD pipelines will monitor
     # For example, "develop"
-    github_branch    = "2.0.8-terraform-&-read-me-changes"
+    github_branch    = "fdaTo2.0.8"
     # GKE master authorized networks.
     # Comment out this block if you would like to allow connections from anywhere.
 #    master_authorized_networks = [

@@ -65,7 +65,7 @@ resource "google_cloudbuild_trigger" "server_build_triggers" {
   github {
     owner = "exelon78"
     name  = "scrumlaunch-medstudies"
-    push { branch = "^2.0.8-terraform-&-read-me-changes$" }
+    push { branch = "^fdaTo2.0.8$" }
   }
 
   filename = "${each.key}/cloudbuild.yaml"
