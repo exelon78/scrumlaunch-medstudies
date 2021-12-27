@@ -1560,7 +1560,7 @@ public class StudyExportImportService {
         if (values[i] instanceof String || values[i] instanceof Timestamp) {
           sqlQuery =
               sqlQuery.replace(
-                  "<" + column + ">", "'" + values[i].toString().replace("'", "") + "'");
+                  "<" + column + ">", "'" + values[i].toString().replace("'", "\\'") + "'");
         } else {
           sqlQuery = sqlQuery.replace("<" + column + ">", "" + values[i] + "");
         }
@@ -1752,7 +1752,7 @@ public class StudyExportImportService {
       if (e instanceof DuplicateKeyException) {
         return IMPORT_FAILED_DUE_TO_ALREADY_USED_URL;
       }
-      return e.getMessage();
+      return IMPORT_FAILED_DUE_TO_ANOMOLIES_DETECTED_IN_FILLE;
     }
     return SUCCESS;
   }

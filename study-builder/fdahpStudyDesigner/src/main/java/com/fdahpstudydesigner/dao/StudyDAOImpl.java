@@ -4392,6 +4392,18 @@ public class StudyDAOImpl implements StudyDAO {
           dbStudyBo.setThumbnailImage(studyBo.getThumbnailImage());
           dbStudyBo.setModifiedBy(studyBo.getUserId());
           dbStudyBo.setModifiedOn(FdahpStudyDesignerUtil.getCurrentDateTime());
+          if (studyBo.getAppId() != null
+              && dbStudyBo.getAppId() != null
+              && !dbStudyBo.getAppId().equals(studyBo.getAppId())) {
+            studySequenceBo =
+                (StudySequenceBo)
+                    session
+                        .getNamedQuery(FdahpStudyDesignerConstants.STUDY_SEQUENCE_BY_ID)
+                        .setString(FdahpStudyDesignerConstants.STUDY_ID, studyBo.getId())
+                        .uniqueResult();
+            studySequenceBo.setSettingAdmins(false);
+            session.update(studySequenceBo);
+          }
           dbStudyBo.setAppId(studyBo.getAppId());
           session.update(dbStudyBo);
 
@@ -5307,7 +5319,7 @@ public class StudyDAOImpl implements StudyDAO {
                       && !existingQuestionResponseSubTypeList.isEmpty()) {
                     for (QuestionResponseSubTypeBo questionResponseSubTypeBo :
                         existingQuestionResponseSubTypeList) {
-                      if (questionResponseSubTypeBo.getDestinationStepId() == null) {
+                      if (StringUtils.isEmpty(questionResponseSubTypeBo.getDestinationStepId())) {
                         sequenceSubTypeList.add(null);
                       } else if ((questionResponseSubTypeBo.getDestinationStepId() != null)
                           && questionResponseSubTypeBo
@@ -7371,10 +7383,7 @@ public class StudyDAOImpl implements StudyDAO {
       studyBo.setId(null);
       studyBo.setStatus(FdahpStudyDesignerConstants.STUDY_PRE_LAUNCH);
       studyBo.setStudylunchDate(null);
-      studyBo.setAppId(
-          studyBo.getType().equals(FdahpStudyDesignerConstants.STUDY_TYPE_SD)
-              ? null
-              : studyBo.getAppId());
+      studyBo.setAppId(null);
       studyBo.setCreatedOn(FdahpStudyDesignerUtil.getCurrentDateTime());
       studyBo.setDestinationCustomStudyId(studyBo.getCustomStudyId() + "@COPY" + copyVersion);
       studyBo.setEnrollingParticipants(FdahpStudyDesignerConstants.YES);
@@ -8015,13 +8024,12 @@ public class StudyDAOImpl implements StudyDAO {
       if (copyVersion.equals(FdahpStudyDesignerConstants.WORKING_VERSION)) {
         String searchQuery =
             " FROM ConsentBo CBO WHERE CBO.studyId=:studyId ORDER BY CBO.version desc ";
-        query = session.createQuery(searchQuery);
-        query.setString("studyId", studyId);
+        query = session.createQuery(searchQuery).setString("studyId", studyId);
       } else {
         String searchQuery =
-            " FROM ConsentBo CBO WHERE CBO.customStudyId=:customStudyId ORDER BY CBO.version desc ";
-        query = session.createQuery(searchQuery);
-        query.setString("customStudyId", customStudyId);
+            " FROM ConsentBo CBO WHERE CBO.customStudyId=:customStudyId AND CBO.version IN "
+                + " (SELECT MAX(version) FROM ConsentBo WHERE customStudyId=:customStudyId) ";
+        query = session.createQuery(searchQuery).setString("customStudyId", customStudyId);
       }
       consentBoList = query.list();
       transaction.commit();
